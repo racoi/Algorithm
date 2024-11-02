@@ -32,16 +32,16 @@ class Solution {
     
     public int bfs(int n, int start){
         int cnt = 1;
-        int[] visit = new int[n+1];
+        boolean[] visited = new boolean[n+1];
         Queue<Integer> q = new LinkedList<>();
         q.offer(start);
         
         while(!q.isEmpty()){
             int node = q.poll();
-            visit[node] = 1;
+            visited[node] = true;
             
             for(int i=1; i<=n; i++){
-                if(visit[i] != 1 && arr[node][i] == 1){
+                if(!visited[i] && arr[node][i] == 1){
                     q.offer(i);
                     cnt++;
                 }
