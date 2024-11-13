@@ -29,7 +29,7 @@ public class Main {
 //            }
 //        }
 
-        while(min <= max){
+        while(min < max){ // upper bound
             int mid = (min + max) / 2;
             long sum = 0; // 나무 길이 최대 10억
             for(int i : arr){
@@ -37,12 +37,12 @@ public class Main {
                     sum += i - mid;
                 }
             }
-            if(sum >= M){
+            if(sum < M){ // 필요한 길이보다 짧다 -> 절단기 높이를 낮춰서 더 많은 길이를 잘라야 함.
+                max = mid;
+            } else{ // 필요한 길이보다 길다 -> 최대값을 찾기 위해 절단기 높이를 높임.
                 min = mid + 1;
-            } else{
-                max = mid - 1;
             }
         }
-        System.out.println(max);
+        System.out.println(min - 1);
     }
 }
