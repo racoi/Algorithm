@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static int N, M;
@@ -13,18 +13,19 @@ public class Main {
         arr = new int[M];
 
         dfs(0, 0);
-        System.out.print(sb);
+        System.out.println(sb);
     }
 
-    public static void dfs(int depth, int now) {
-        if(depth == M) {
+    public static void dfs(int depth, int start){
+        if(depth == M){
             for(int i : arr){
                 sb.append(i + " ");
             }
             sb.append("\n");
             return;
         }
-        for(int i=now; i<N; i++){
+
+        for(int i=start; i<N; i++){
             arr[depth] = i + 1;
             dfs(depth + 1, i);
         }
