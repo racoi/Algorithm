@@ -22,7 +22,7 @@ public class Main {
             }else{
                 arr[num] = arr[num] == 0 ? 1 : 0;
                 for(int j=1; j<n/2; j++){
-                    if(num-j < 1 || num+j >= n+1) break;
+                    if(num-j < 1 || num+j > n) break;
                     if(arr[num-j] == arr[num+j]){
                         arr[num-j] = arr[num-j] == 0 ? 1 : 0;
                         arr[num+j] = arr[num+j] == 0 ? 1 : 0;
