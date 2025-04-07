@@ -1,36 +1,43 @@
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(in.readLine());
 
-        int[] in = new int[N];
-        for(int i=0; i<N; i++) in[i] = sc.nextInt();
-        int[] out = new int[N];
-        for(int i=0; i<N; i++) out[i] = sc.nextInt();
+        int[] input = new int[N];
+        StringTokenizer st = new StringTokenizer(in.readLine());
+        StringBuilder inputStr = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            input[i] = Integer.parseInt(st.nextToken());
+            inputStr.append(input[i]).append(" ");
+        }
 
-        for(int i=0; i<N; i++){
-            if(in[0] != out[i]) continue;
+        int[] output = new int[N];
+        st = new StringTokenizer(in.readLine());
+        StringBuilder outputStr = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            output[i] = Integer.parseInt(st.nextToken());
+            outputStr.append(output[i]).append(" ");
+        }
 
-            boolean flag = true;
-            for(int j=0; j<N; j++){
-                if(in[j] != out[(i+j)%N]){
-                    flag = false;
-                    break;
-                }
-            }
+        // 정방향 회전 비교용 문자열
+        String out = outputStr.toString();
+        String doubled = out + out;
 
-            boolean rvsflag = true;
-            for(int j=0; j<N; j++){
-                if(in[j] != out[(i-j+N)%N]){
-                    rvsflag = false;
-                    break;
-                }
-            }
+        // 역방향 회전 문자열 생성
+        StringBuilder reversed = new StringBuilder();
+        for (int i = N - 1; i >= 0; i--) {
+            reversed.append(output[i]).append(" ");
+        }
+        String reversedDoubled = reversed.toString() + reversed.toString();
 
-            if(flag || rvsflag) System.out.println("good puzzle");
-            else System.out.println("bad puzzle");
+        // 포함 여부 확인
+        if (doubled.contains(inputStr.toString()) || reversedDoubled.contains(inputStr.toString())) {
+            System.out.println("good puzzle");
+        } else {
+            System.out.println("bad puzzle");
         }
     }
 }
