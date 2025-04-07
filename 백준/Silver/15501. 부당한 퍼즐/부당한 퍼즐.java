@@ -23,7 +23,7 @@ public class Main {
 
             boolean rvsflag = true;
             for(int j=0; j<N; j++){
-                if(in[j] != out[(i+N-j)%N]){
+                if(in[j] != out[(i-j+N)%N]){
                     rvsflag = false;
                     break;
                 }
