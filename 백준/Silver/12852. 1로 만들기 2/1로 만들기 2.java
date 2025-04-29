@@ -1,33 +1,30 @@
-import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int[] dp = new int[n + 1];
 
-        int dp[] = new int[N + 1];
-        int trace[] = new int[N + 1];
-
-        dp[1] = 0;
-
-        for(int i = 2; i <= N; i++) {
+        for (int i = 2; i <= n; i++) {
             dp[i] = dp[i - 1] + 1;
-            trace[i] = i - 1;
+            if (i % 2 == 0) dp[i] = Math.min(dp[i], dp[i / 2] + 1);
+            if (i % 3 == 0) dp[i] = Math.min(dp[i], dp[i / 3] + 1);
+        }
+        sb.append(dp[n]).append("\n");
 
-            if (i % 3 == 0 && dp[i / 3] + 1 < dp[i]) {
-                dp[i] = dp[i / 3] + 1;
-                trace[i] = i / 3;
-            }
-            if (i % 2 == 0 && dp[i / 2] + 1 < dp[i]) {
-                dp[i] = dp[i / 2] + 1;
-                trace[i] = i / 2;
+        while (n > 0) {
+            sb.append(n).append(" ");
+            if (n == 1) break;
+            if (n % 3 == 0 && dp[n / 3] == dp[n] - 1) {
+                n /= 3;
+            } else if (n % 2 == 0 && dp[n / 2] == dp[n] - 1) {
+                n /= 2;
+            } else {
+                n -= 1;
             }
         }
-        System.out.println(dp[N]);
-
-        while(N > 0){
-            System.out.println(N + " ");
-            N = trace[N];
-        }
+        System.out.println(sb.toString().trim());
     }
 }
