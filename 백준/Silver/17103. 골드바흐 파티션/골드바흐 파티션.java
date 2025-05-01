@@ -5,12 +5,12 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
 
-        boolean[] prime = new boolean[1000001];
-        prime[0] = prime[1] = true;
+        boolean[] num = new boolean[1000001];
+        num[0] = num[1] = true;
         for (int i = 2; i * i <= 1000000; i++) {
-            if (!prime[i]) {
+            if (!num[i]) {
                 for (int j = i + i; j <= 1000000; j += i) {
-                    prime[j] = true;
+                    num[j] = true;
                 }
             }
         }
@@ -19,7 +19,7 @@ public class Main {
             int N = Integer.parseInt(br.readLine());
             int ans = 0;
             for (int j = 2; j <= N / 2; j++) {
-                if (!prime[j] && !prime[N - j]) ans++;
+                if (!num[j] && !num[N - j]) ans++;
             }
             System.out.println(ans);
         }
