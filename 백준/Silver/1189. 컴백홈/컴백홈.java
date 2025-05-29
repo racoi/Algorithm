@@ -31,9 +31,9 @@ public class Main {
 
     }
 
-    static void dfs(int x, int y, int k) {
+    static void dfs(int x, int y, int depth) {
         if (x == 0 && y == C - 1) {
-            if (k == K) {
+            if (depth == K) {
                 ans++;
             }
             return;
@@ -45,7 +45,7 @@ public class Main {
             if (nx >= 0 && nx < R && ny >= 0 && ny < C) {
                 if (!visited[nx][ny] && arr[nx][ny] != 'T') {
                     visited[nx][ny] = true;
-                    dfs(nx, ny, k + 1);
+                    dfs(nx, ny, depth + 1);
                     visited[nx][ny] = false;
                 }
             }
