@@ -3,10 +3,10 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] inputs = br.readLine().split(" ");
-        int R = Integer.parseInt(inputs[0]);
-        int C = Integer.parseInt(inputs[1]);
-        int N = Integer.parseInt(inputs[2]);
+        String[] input = br.readLine().split(" ");
+        int R = Integer.parseInt(input[0]);
+        int C = Integer.parseInt(input[1]);
+        int N = Integer.parseInt(input[2]);
 
         char[][] map = new char[R][C];
         int[][] bomb = new int[R][C];
