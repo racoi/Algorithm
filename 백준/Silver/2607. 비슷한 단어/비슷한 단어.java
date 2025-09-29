@@ -17,7 +17,7 @@ public class Main{
 
             int cnt = 0;
             for(int j=0; j<str.length(); j++) {
-                if(map2.containsKey(str.charAt(j)) == true) {
+                if(map2.containsKey(str.charAt(j))) {
                     int value = map2.get(str.charAt(j));
                     if(value > 0) {
                         cnt += 1;
